@@ -1,0 +1,35 @@
+start: structures*
+
+structures: DEF_VARIABLE_INT
+
+DEF_VARIABLE_INT: VARIABLE DOS_P T_I EQUAL D P 
+
+VARIABLE: /[a-z][a-z]*/
+DOS_P: ":" | " :"
+T_I: "int"| " int"
+T_S: "string"| " string"
+EQUAL: "=" | " =" 
+P: ";" | " ;"
+RUN: "run"
+PAR_A: "("| " ("
+PAR_C: "(" | " )"
+LLAVE_A: "{" | " {"
+LLAVE_C: "}" | " }"
+IDENTIFICADOR: /[a-z][a-z]*/| / [a-z][a-z]*/
+FN: "fn "
+CYCLE: "cycle"
+STATIC: "i"
+D: /\d+/ | / \d+/ 
+MAYOR: ">"
+X: "x"
+INCREMENTO: "i++"
+MAYORQUE: ">="
+S_SCREEN: "screen.show"
+CADENA: /"[a-zA-Z]+"/
+MAS: "+"
+C_WHEN: "when"
+SO: "so"
+STRING: /"([^;()\[\]{}]|\\")*"/
+
+%import common.WS
+%ignore WS

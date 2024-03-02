@@ -1,34 +1,42 @@
 start: structures*
 
-structures: DEF_VARIABLE_INT
+structures: DEF_VARIABLE_INT| DEF_VARIABLE_STRING | PRINCIPAL |FN_WHILE| FN_WHEN
 
-DEF_VARIABLE_INT: VARIABLE DOS_P T_I EQUAL D P 
+PRINCIPAL: RUN PAR_A PAR_C LLAVE_A IDENTIFICADOR PAR_A PAR_C P LLAVE_C | RUN PAR_A PAR_C LLAVE_A IDENTIFICADOR PAR_A PAR_C P IDENTIFICADOR PAR_A PAR_C P LLAVE_C
 
-VARIABLE: /[a-z][a-z]*/
+
+DEF_VARIABLE_INT: VARIABLE DOS_P T_I EQUAL D P
+DEF_VARIABLE_STRING: VARIABLE DOS_P T_S EQUAL STRING P
+
+FN_WHILE: FN IDENTIFICADOR PAR_A PAR_C LLAVE_A CYCLE PAR_A STATIC DOS_P T_I EQUAL D P STATIC MAYOR X P INCREMENTO PAR_C LLAVE_A S_SCREEN PAR_A STRING MAS VARIABLE PAR_C P LLAVE_C LLAVE_C
+FN_WHEN: FN IDENTIFICADOR PAR_A PAR_C LLAVE_A C_WHEN PAR_A VARIABLE MAYORQUE D PAR_C LLAVE_A S_SCREEN PAR_A STRING PAR_C P LLAVE_C SO LLAVE_A S_SCREEN PAR_A STRING PAR_C P LLAVE_C LLAVE_C
+
+
+VARIABLE: /_[a-z][a-z]*/ | / _[a-z][a-z]*/
 DOS_P: ":" | " :"
 T_I: "int"| " int"
 T_S: "string"| " string"
-EQUAL: "=" | " =" 
+EQUAL: "=" | " ="
 P: ";" | " ;"
 RUN: "run"
 PAR_A: "("| " ("
-PAR_C: "(" | " )"
+PAR_C: ")" | " )"
 LLAVE_A: "{" | " {"
 LLAVE_C: "}" | " }"
 IDENTIFICADOR: /[a-z][a-z]*/| / [a-z][a-z]*/
 FN: "fn "
-CYCLE: "cycle"
-STATIC: "i"
-D: /\d+/ | / \d+/ 
-MAYOR: ">"
-X: "x"
-INCREMENTO: "i++"
-MAYORQUE: ">="
-S_SCREEN: "screen.show"
+CYCLE: "cycle"| " cycle"
+STATIC: "i" | " i"
+D: /\d+/ | / \d+/
+MAYOR: ">"| " >"
+X: "x"| " x"
+INCREMENTO: "i++" | " i++"
+MAYORQUE: ">=" | " >="
+S_SCREEN: "screen.show" | " screen.show"
 CADENA: /"[a-zA-Z]+"/
-MAS: "+"
-C_WHEN: "when"
-SO: "so"
+MAS: "+"| " +"
+C_WHEN: "when"| " when"
+SO: "so"| " so"
 STRING: /"([^;()\[\]{}]|\\")*"/
 
 %import common.WS

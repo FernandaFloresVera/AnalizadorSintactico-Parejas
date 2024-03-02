@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import messagebox
-from main import procesar_entrada  
+from main import procesar_entrada
 
 def procesar():
     entrada = text_area_entrada.get('1.0', tk.END)
@@ -14,12 +14,12 @@ def procesar():
         messagebox.showerror("Error de análisis", str(e))
 
 root = tk.Tk()
-root.title("Lyra: Analizador Léxico")
+root.title("Nova lexical analyzer")
 
 text_area_entrada = tk.Text(root, height=10, width=100)
 text_area_entrada.pack(padx=10, pady=10)
 
-boton_procesar = tk.Button(root, text="PROCESAR", command=procesar)
+boton_procesar = tk.Button(root, text="Analizar", command=procesar)
 boton_procesar.pack(padx=10, pady=10)
 
 text_area_resultado = tk.Text(root, height=15, width=100)
